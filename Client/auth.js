@@ -1,4 +1,6 @@
-const API = "http://localhost:5000/api";
+const API = ["localhost", "127.0.0.1"].includes(location.hostname)
+  ? "http://localhost:5000/api"
+  : "https://YOUR-RENDER-URL.onrender.com/api";
 
 function getToken() {
   return localStorage.getItem("token");
