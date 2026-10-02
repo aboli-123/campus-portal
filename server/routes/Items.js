@@ -1,13 +1,17 @@
 const router = require("express").Router();
 const Item = require("../models/Item");
 const auth = require("../middleware/auth");
+const { upload, uploadToCloudinary } = require("../config/cloudinary");
 
 // Post a new item (login required)
-router.post("/", auth, async (req, res) => {
+router.post("/", auth, upload.single("image"), async (req, res) => {
   try {
     const { title, description, type, category, location, date } = req.body;
+    let imageUrl;
+    if (req.file) imageUrl = await uploadToCloudinary(req.file.buffer);
+
     const item = await Item.create({
-      title, description, type, category, location, date,
+      title, description, type, category, location, date, imageUrl,
       postedBy: req.user.id,
     });
     res.status(201).json(item);

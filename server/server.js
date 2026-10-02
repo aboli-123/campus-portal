@@ -9,6 +9,7 @@ app.use(express.json());
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/items", require("./routes/items"));
 
+
 app.get("/", (req, res) => res.send("Campus portal API is running"));
 
 mongoose
