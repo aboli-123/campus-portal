@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", require("./routes/auth"));
-app.use("/api/items", require("./routes/items"));
+app.use("/api/items", require("./routes/Items"));
 
 
 app.get("/", (req, res) => res.send("Campus portal API is running"));
